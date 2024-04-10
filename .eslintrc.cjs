@@ -4,27 +4,28 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:import/recommended',
+    'plugin:jsx-a11y/recommended',
+    'eslint-config-prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'html', '@typescript-eslint', 'cypress'],
   settings: {
     react: {
-        version: 'detect',
+      version: 'detect',
     },
     'import/resolver': {
-        node: {
-            paths: ['src'],
-            extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        },
+      node: {
+        paths: ['src'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
     },
   },
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
+    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'no-unused-vars': [
       'error',
       {
@@ -35,4 +36,4 @@ module.exports = {
       },
     ],
   },
-}
+};
