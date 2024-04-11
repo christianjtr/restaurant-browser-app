@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Catalog } from '../types';
-import RestaurantServices from '../services/apis/restaurant/restaurant.services';
+import { Catalog } from '@app-types';
+import RestaurantServices from '@services/apis/restaurant/restaurant.services';
 
 export interface UseRestaurantCatalogInterface {
   catalog: Catalog | null;

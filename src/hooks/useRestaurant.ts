@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Restaurant } from '../types';
-import RestaurantServices from '../services/apis/restaurant/restaurant.services';
+import { Restaurant } from '@app-types';
+import RestaurantServices from '@services/apis/restaurant/restaurant.services';
 
 export interface UseRestaurantInterface {
   restaurants: Restaurant[];
