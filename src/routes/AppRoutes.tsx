@@ -1,19 +1,19 @@
 import React, { lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-const Restaurants = lazy(() => import('../pages/Restaurants'));
-const RestaurantDetail = lazy(() => import('../pages/RestaurantDetail'));
+const Restaurants = lazy(() => import('@pages/Restaurants'));
+const RestaurantDetail = lazy(() => import('@pages/RestaurantDetail'));
+const NotFound = lazy(() => import('@pages/NotFound'));
 
 export const AppRoutes = (): React.ReactElement => {
   return (
-    <Router basename={import.meta.env.VITE_APP_BASE_PATH}>
-      <Routes>
-        <Route path="/restaurants" element={<Restaurants />}>
-          <Route path="/restaurants/:id" element={<RestaurantDetail />} />
-        </Route>
-        <Route path="/" element={<Navigate to="/restaurants" />} />
-        <Route path="*" element={<div></div>} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/restaurants">
+        <Route index element={<Restaurants />} />
+        <Route path=":restaurantId" element={<RestaurantDetail />} />
+      </Route>
+      <Route path="/" element={<Navigate to="/restaurants" />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
