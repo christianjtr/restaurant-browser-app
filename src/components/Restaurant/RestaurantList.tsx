@@ -1,18 +1,26 @@
 import React from 'react';
-import { Restaurant } from '../../types';
+import { useNavigate } from 'react-router-dom';
+import { Restaurant } from '@app-types';
 import { RestaurantItem } from './RestaurantItem';
 
 interface RestaurantListProps {
   restaurants: Restaurant[];
+  className?: string;
 }
 
 export const RestaurantList = (props: RestaurantListProps): React.ReactElement => {
-  const { restaurants } = props;
+  const navigate = useNavigate();
+
+  const { restaurants, className = 'grid grid-cols-1 gap-6' } = props;
+
+  const handleOnClickItem = (id: number | string): void => {
+    navigate(`/restaurants/${id}`);
+  };
 
   return (
-    <div>
+    <div className={className} data-testid="restaurant-list" data-cy="restaurant-list">
       {restaurants.map(({ catalog, ...restaurant }) => (
-        <RestaurantItem key={restaurant.id} data={restaurant} />
+        <RestaurantItem key={restaurant.id} data={restaurant} onClick={() => handleOnClickItem(restaurant.id)} />
       ))}
     </div>
   );
