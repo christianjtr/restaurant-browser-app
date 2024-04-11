@@ -1,14 +1,14 @@
 import { RestaurantAPIConfig } from './config';
-import { RestaurantAPIResponse, CatalogAPIResponse } from '../../../types';
+import { RestaurantAPIResponse, CatalogAPIResponse } from '@app-types';
 
 const {
   config: { baseURL, isAPIMocked },
 } = RestaurantAPIConfig;
 
 /**
- * Mock
+ * ___MOCK___
  * This dinamyc import will load dummy data if the VITE_ENABLE_API_MOCK env variable is set to "true"
- * Is intented to work with mocked data only
+ * It's intented to be used for dev purposes only
  */
 const apiMock = (async () => {
   const { default: mocks } = await import('../../../../__fixtures__/restaurants.json');
@@ -16,7 +16,7 @@ const apiMock = (async () => {
 })();
 
 export default {
-  getRestaurants: async (): Promise<RestaurantAPIResponse.Restaurant | Promise<Error>> => {
+  getRestaurants: async (): Promise<RestaurantAPIResponse.Restaurant> => {
     if (isAPIMocked) return (await apiMock) as unknown as Promise<RestaurantAPIResponse.Restaurant>;
 
     try {
@@ -27,7 +27,7 @@ export default {
       throw error;
     }
   },
-  getCatalogByRestaurantId: async (id: number | string): Promise<CatalogAPIResponse.Catalog | Promise<Error>> => {
+  getCatalogByRestaurantId: async (id: number | string): Promise<CatalogAPIResponse.Catalog> => {
     if (isAPIMocked) {
       return (await apiMock).find((restaurant) => restaurant.id === id)
         ?.catalog as unknown as Promise<CatalogAPIResponse.Catalog>;
