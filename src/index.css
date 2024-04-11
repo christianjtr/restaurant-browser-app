@@ -1,3 +1,16 @@
+:root {
+  --color-base: #262638;
+  --color-neutral-n300: #a8a8c8;
+}
+
+.color--base {
+  color: var(--color-base);
+}
+
+.color--neutral-n300 {
+  color: var(--color-neutral-n300);
+}
+
 .poppins-thin {
   font-family: 'Poppins', sans-serif;
   font-weight: 100;
