@@ -1,0 +1,13 @@
+.app-header {
+  --bg-color: #262638;
+  --height: 68px;
+
+  background-color: var(--bg-color);
+  height: var(--height);
+
+  @apply text-neutral-content;
+
+  & div:first-child {
+    @apply navbar sm:w-1/2 md:container lg:container mx-auto;
+  }
+}
