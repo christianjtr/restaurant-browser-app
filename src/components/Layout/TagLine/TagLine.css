@@ -1,0 +1,7 @@
+.tag-line {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  & ::-webkit-scrollbar {
+    display: none;
+  }
+}
