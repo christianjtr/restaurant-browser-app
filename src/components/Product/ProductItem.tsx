@@ -23,18 +23,20 @@ export const ProductItem: React.FC<ProductProps> = (props: ProductProps): React.
 
   return (
     <div className="card border">
-      {/* <figure className="bg-slate-500 w-auto max-h-full">
-        <img
-          src={data.image}
-          alt={`Product ${data.name}`}
-          className="rounded-xl w-full h-full object-contain"
-          onError={({ currentTarget }) => {
-            currentTarget.src = 'https://placehold.co/200x200/png';
-            currentTarget.onerror = null;
-          }}
-        />
-      </figure> */}
-      <div className="card-body items-center p-3">
+      <div className="flex-grow">
+        <figure className="w-auto rounded-xl p-3 max-h-40 overflow-hidden">
+          <img
+            src={data.image}
+            alt={`Product ${data.name}`}
+            className="rounded-xl p-2 object-cover w-5/6"
+            onError={({ currentTarget }) => {
+              currentTarget.src = 'https://placehold.co/200x200/FFF/CCCCCC?text=No+Image';
+              currentTarget.onerror = null;
+            }}
+          />
+        </figure>
+      </div>
+      <div className="card-body items-center flex justify-end p-3">
         <h4 className="color--base poppins-regular block w-full text-left">{data.name}</h4>
         <div className="w-full flex flex-row justify-between items-center">
           <span className="poppins-semibold">{formattedPrice}</span>
