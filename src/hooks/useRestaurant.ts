@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Restaurant } from '@app-types';
 import RestaurantServices from '@services/apis/restaurant/restaurant.services';
+import { restaurantAdapter } from '@adapters/restaurant.adapter';
 
 export interface UseRestaurantInterface {
   restaurants: Restaurant[];
@@ -17,8 +18,9 @@ export const useRestaurant = (): UseRestaurantInterface => {
     (async () => {
       try {
         setIsLoading(true);
-        const results = await RestaurantServices.getRestaurants();
-        setRestaurants(results as unknown as Restaurant[]);
+        const response = await RestaurantServices.getRestaurants();
+        const restaurants = response.map(restaurantAdapter);
+        setRestaurants(restaurants);
       } catch (error) {
         setHasError(true);
         throw new Error(`Error fetching restaurants, [Error]: ${error}`);

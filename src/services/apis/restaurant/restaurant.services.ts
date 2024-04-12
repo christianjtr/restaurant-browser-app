@@ -16,8 +16,8 @@ const apiMock = (async () => {
 })();
 
 export default {
-  getRestaurants: async (): Promise<RestaurantAPIResponse.Restaurant> => {
-    if (isAPIMocked) return (await apiMock) as unknown as Promise<RestaurantAPIResponse.Restaurant>;
+  getRestaurants: async (): Promise<RestaurantAPIResponse.Restaurant[]> => {
+    if (isAPIMocked) return (await apiMock) as unknown as Promise<RestaurantAPIResponse.Restaurant[]>;
 
     try {
       const response = await fetch(`${baseURL}/restaurants`);
