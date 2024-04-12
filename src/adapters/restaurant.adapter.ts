@@ -1,22 +1,15 @@
-import { getDistance } from 'geolib';
-import { RestaurantAPIResponse, Restaurant, Geolocation } from '@app-types';
+import { RestaurantAPIResponse, Restaurant } from '@app-types';
+import { getDistanceBetweenTwoCoordPoints } from '@utils/geolocation.utils';
 
-export const restaurantAdapter = (restaurant: RestaurantAPIResponse.Restaurant): Restaurant => {
+export const restaurantAdapter = (
+  restaurant: RestaurantAPIResponse.Restaurant,
+  userGeolocation: GeolocationPosition,
+): Restaurant => {
+  const { latitude, longitude } = userGeolocation.coords;
+
   return {
     ...restaurant,
     category: 'Comida rápida',
-    getDistanceFromUserGeolocation: (
-      userGeolocation: Geolocation.Point,
-    ): { distance: number; formattedDistance: string } | null => {
-      if (Object.values(userGeolocation).some((value) => !value)) return null;
-
-      const distance = getDistance(userGeolocation, restaurant.coordinates);
-      const formattedDistance = distance >= 1000 ? `${(distance / 1000).toFixed(1)} Km` : `${distance} m`;
-
-      return {
-        distance,
-        formattedDistance,
-      };
-    },
+    ...getDistanceBetweenTwoCoordPoints({ latitude, longitude }, restaurant.coordinates),
   };
 };

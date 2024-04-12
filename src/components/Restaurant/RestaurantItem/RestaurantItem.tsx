@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Restaurant } from '@app-types';
 import StartIcon from '@assets/StartIcon.svg';
 import PinIcon from '@assets/PinIcon.svg';
-import { GeolocationContext, GeolocationContextType } from '@contexts/Geolocation/GeolocationContext';
 import './RestaurantItem.css';
 
 interface RestarauntItemProps {
@@ -12,16 +11,6 @@ interface RestarauntItemProps {
 
 export const RestaurantItem = (props: RestarauntItemProps): React.ReactElement => {
   const { data, onClick: onClickCallback = () => {} } = props;
-  const { getDistanceFromUserGeolocation } = data;
-
-  const {
-    state: { userGeolocation },
-  } = useContext(GeolocationContext) as GeolocationContextType;
-
-  const distanceFromUserGeolocation = getDistanceFromUserGeolocation({
-    latitude: userGeolocation?.coords.latitude!,
-    longitude: userGeolocation?.coords.longitude!,
-  });
 
   const handleOnClickItem = (): void => {
     if (onClickCallback && typeof onClickCallback === 'function') {
@@ -41,7 +30,7 @@ export const RestaurantItem = (props: RestarauntItemProps): React.ReactElement =
       <figure>
         <img src={data.image} alt={`Restaurant ${data.name} front page`} />
       </figure>
-      <div className="card-body flex flex-row">
+      <div className="card-body flex flex-row gap-3">
         <div className="flex justify-center">
           <figure className="restaurant-logo relative">
             <img src={data.logo} alt={`Restaurant ${data.name} logo`} />
@@ -57,11 +46,7 @@ export const RestaurantItem = (props: RestarauntItemProps): React.ReactElement =
             </span>
             <span className="inline-flex items-center">
               <img src={PinIcon} className="mr-2 info-icon" alt={`Pin map icon`} />
-              {distanceFromUserGeolocation ? (
-                distanceFromUserGeolocation.formattedDistance
-              ) : (
-                <span className="loading loading-dots loading-xs"></span>
-              )}
+              {data.formattedDistance}
             </span>
           </p>
         </div>

@@ -20,8 +20,6 @@ export namespace RestaurantAPIResponse {
 
 export type Restaurant = RestaurantAPIResponse.Restaurant & {
   category: string;
-  getDistanceFromUserGeolocation: (userGeolocation: Geolocation.Point) => {
-    distance: number;
-    formattedDistance: string;
-  } | null;
+  distance: number;
+  formattedDistance: string;
 };
