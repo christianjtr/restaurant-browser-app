@@ -3,10 +3,10 @@ export interface ContainerProps {
   children: React.ReactElement;
 }
 
-export const Container = ({ children }: ContainerProps): React.ReactElement => {
+export const Container: React.FC<ContainerProps> = ({ children }: ContainerProps): React.ReactElement => {
   return (
     <main>
-      <div className="sm:w-full md:w-1/2 mx-auto px-6 h-full">{children}</div>
+      <div className="sm:w-full md:w-1/2 mx-auto sm:px-0 h-full">{children}</div>
     </main>
   );
 };

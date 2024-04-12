@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import BrandLogo from '@assets/BrandLogo.svg';
 import './Header.css';
 
-export const Header = (): React.ReactElement => {
+export const Header: React.FC = (): React.ReactElement => {
   const navigate = useNavigate();
 
   const handleOnClickOnBrandLogo = (): void => {

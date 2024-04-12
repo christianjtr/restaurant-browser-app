@@ -4,7 +4,7 @@ export interface LoaderSpinnerProps {
   message?: string;
 }
 
-export const LoaderSpinner = (props: LoaderSpinnerProps): React.ReactElement => {
+export const LoaderSpinner: React.FC<LoaderSpinnerProps> = (props: LoaderSpinnerProps): React.ReactElement => {
   const { message = 'Loading' } = props;
 
   return (

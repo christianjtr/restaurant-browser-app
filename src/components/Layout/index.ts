@@ -1,4 +1,4 @@
 export * from './Header/Header';
 export * from './Container';
-export * from './TagLine';
+export * from './TagLine/TagLine';
 export * from './LoaderSpinner';
