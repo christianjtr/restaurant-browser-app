@@ -5,4 +5,6 @@ export type GeolocationContextType = {
   state: GeolocationStateInterface;
 };
 
-export const GeolocationContext = createContext<GeolocationContextType>({ state: GeolocationState });
+export const GeolocationContext: React.Context<GeolocationContextType> = createContext<GeolocationContextType>({
+  state: GeolocationState,
+});

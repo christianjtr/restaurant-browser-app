@@ -9,7 +9,7 @@ interface RestarauntItemProps {
   onClick?: () => void;
 }
 
-export const RestaurantItem = (props: RestarauntItemProps): React.ReactElement => {
+export const RestaurantItem: React.FC<RestarauntItemProps> = (props: RestarauntItemProps): React.ReactElement => {
   const { data, onClick: onClickCallback = () => {} } = props;
 
   const handleOnClickItem = (): void => {

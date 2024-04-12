@@ -7,6 +7,14 @@
   color: var(--color-base);
 }
 
+.background-color--base {
+  background-color: var(--color-base);
+}
+
+.border-color--base {
+  border-color: var(--color-base);
+}
+
 .color--neutral-n300 {
   color: var(--color-neutral-n300);
 }
