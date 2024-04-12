@@ -27,10 +27,11 @@ export default {
       throw error;
     }
   },
-  getCatalogByRestaurantId: async (id: number | string): Promise<CatalogAPIResponse.Catalog> => {
+  getCatalogByRestaurantId: async (id: number | string): Promise<CatalogAPIResponse.Catalog[]> => {
     if (isAPIMocked) {
-      return (await apiMock).find((restaurant) => restaurant.id === id)
-        ?.catalog as unknown as Promise<CatalogAPIResponse.Catalog>;
+      return (await apiMock).find((restaurant) => restaurant.id === id)?.catalog as unknown as Promise<
+        CatalogAPIResponse.Catalog[]
+      >;
     }
 
     try {
