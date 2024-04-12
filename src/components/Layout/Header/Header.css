@@ -8,6 +8,6 @@
   @apply text-neutral-content;
 
   & div:first-child {
-    @apply navbar sm:w-1/2 md:container lg:container mx-auto;
+    @apply navbar sm:w-full md:w-1/2 mx-auto;
   }
 }
