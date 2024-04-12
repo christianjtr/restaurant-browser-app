@@ -21,7 +21,7 @@ export const useRestaurant = (opts: UseRestaurantProps): UseRestaurantInterface 
   const [hasError, setHasError] = useState<boolean>(false);
 
   const orderByClosest = (items: Restaurant[]): Restaurant[] => {
-    return [];
+    return items.sort((a, b) => a.distance - b.distance);
   };
 
   useEffect(() => {
@@ -30,8 +30,8 @@ export const useRestaurant = (opts: UseRestaurantProps): UseRestaurantInterface 
       (async () => {
         try {
           const response = await RestaurantServices.getRestaurants();
-          const restaurants = response.map((restaurant) => restaurantAdapter(restaurant, userGeolocation));
-          setRestaurants(restaurants);
+          const responseDTO = response.map((restaurant) => restaurantAdapter(restaurant, userGeolocation));
+          setRestaurants(orderByClosestRestaurant ? orderByClosest(responseDTO) : responseDTO);
         } catch (error) {
           setHasError(true);
           throw new Error(`Error fetching restaurants, [Error]: ${error}`);
