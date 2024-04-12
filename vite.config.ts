@@ -11,8 +11,10 @@ export default defineConfig({
   },
   resolve: {
     alias: [
+      { find: '@adapters', replacement: resolve(__dirname, './src/adapters') },
       { find: '@assets', replacement: resolve(__dirname, './src/assets') },
       { find: '@components', replacement: resolve(__dirname, './src/components') },
+      { find: '@contexts', replacement: resolve(__dirname, './src/contexts') },
       { find: '@hooks', replacement: resolve(__dirname, './src/hooks') },
       { find: '@pages', replacement: resolve(__dirname, './src/pages') },
       { find: '@routes', replacement: resolve(__dirname, './src/routes') },
