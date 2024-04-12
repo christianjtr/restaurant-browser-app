@@ -1,2 +1,2 @@
 export * from './Restaurants';
-export * from './RestaurantDetail';
+export * from './RestaurantDetail/RestaurantDetail';

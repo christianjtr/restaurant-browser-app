@@ -17,7 +17,7 @@ const Restaurants = (): React.ReactElement => {
   if (isLoading) return <LoaderSpinner />;
 
   return (
-    <div>
+    <div className="px-6">
       <h1 className="text-lg poppins-medium py-6 color--base">Restaurantes</h1>
       <RestaurantList restaurants={restaurants} />
     </div>
