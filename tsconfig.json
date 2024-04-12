@@ -33,7 +33,8 @@
       "@services": ["./src/services"],
       "@services/*": ["./src/services/*"],
       "@app-types": ["./src/types"],
-      "@app-types/*": ["./src/types/*"]
+      "@app-types/*": ["./src/types/*"],
+      "@utils/*": ["./src/utils/*"]
     }
   },
   "include": ["src"],
