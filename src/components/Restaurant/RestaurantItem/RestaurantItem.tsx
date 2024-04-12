@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Restaurant } from '@app-types';
 import StartIcon from '@assets/StartIcon.svg';
 import PinIcon from '@assets/PinIcon.svg';
+import { GeolocationContext, GeolocationContextType } from '@contexts/Geolocation/GeolocationContext';
 import './RestaurantItem.css';
 
 interface RestarauntItemProps {
@@ -11,6 +12,16 @@ interface RestarauntItemProps {
 
 export const RestaurantItem = (props: RestarauntItemProps): React.ReactElement => {
   const { data, onClick: onClickCallback = () => {} } = props;
+  const { getDistanceFromUserGeolocation } = data;
+
+  const {
+    state: { userGeolocation },
+  } = useContext(GeolocationContext) as GeolocationContextType;
+
+  const distanceFromUserGeolocation = getDistanceFromUserGeolocation({
+    latitude: userGeolocation?.coords.latitude!,
+    longitude: userGeolocation?.coords.longitude!,
+  });
 
   const handleOnClickItem = (): void => {
     if (onClickCallback && typeof onClickCallback === 'function') {
@@ -38,7 +49,7 @@ export const RestaurantItem = (props: RestarauntItemProps): React.ReactElement =
         </div>
         <div className="basis-full">
           <h2 className="card-title poppins-medium text-base uppercase color--base mb-3">{data.name}</h2>
-          <h4 className="card-category-title poppins-regular text-base color--neutral-n300 block">Comida rápida</h4>
+          <h4 className="card-category-title poppins-regular text-base color--neutral-n300 block">{data.category}</h4>
           <p className="block restaurant-info color--neutral-n300">
             <span className="inline-flex items-center">
               <img src={StartIcon} className="mr-2 info-icon" alt={`Start icon`} />
@@ -46,7 +57,11 @@ export const RestaurantItem = (props: RestarauntItemProps): React.ReactElement =
             </span>
             <span className="inline-flex items-center">
               <img src={PinIcon} className="mr-2 info-icon" alt={`Pin map icon`} />
-              1.7 Km
+              {distanceFromUserGeolocation ? (
+                distanceFromUserGeolocation.formattedDistance
+              ) : (
+                <span className="loading loading-dots loading-xs"></span>
+              )}
             </span>
           </p>
         </div>

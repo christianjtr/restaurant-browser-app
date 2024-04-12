@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Restaurant } from '@app-types';
-import { RestaurantItem } from './RestaurantItem';
+import { RestaurantItem } from '../RestaurantItem/RestaurantItem';
+import './RestaurantList.css';
 
 interface RestaurantListProps {
   restaurants: Restaurant[];
@@ -18,7 +19,7 @@ export const RestaurantList = (props: RestaurantListProps): React.ReactElement =
   };
 
   return (
-    <div className={className} data-testid="restaurant-list" data-cy="restaurant-list">
+    <div className={`restaurant-list ${className}`} data-testid="restaurant-list" data-cy="restaurant-list">
       {restaurants.map(({ catalog, ...restaurant }) => (
         <RestaurantItem key={restaurant.id} data={restaurant} onClick={() => handleOnClickItem(restaurant.id)} />
       ))}

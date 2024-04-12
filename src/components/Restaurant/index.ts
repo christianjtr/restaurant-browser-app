@@ -1,2 +1,2 @@
-export * from './RestaurantList';
-export * from './RestaurantItem';
+export * from './RestaurantList/RestaurantList';
+export * from './RestaurantItem/RestaurantItem';
