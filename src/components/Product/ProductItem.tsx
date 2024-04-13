@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Product } from '@app-types';
 import PlusIcon from '@assets/PlusIcon.svg?react';
 import MinusIcon from '@assets/MinusIcon.svg?react';
+import { PurchaseContext } from '@contexts/Purchase/PurchaseContext';
+import { PURCHASE_ACTION_TYPES } from '@contexts/Purchase/action-types';
 
 export interface ProductProps {
   data: Product & { catalog: string };
@@ -9,16 +11,19 @@ export interface ProductProps {
 
 export const ProductItem: React.FC<ProductProps> = (props: ProductProps): React.ReactElement => {
   const { data } = props;
+  const { dispatch } = useContext(PurchaseContext);
   const [count, setCount] = useState<number>(0);
 
   const formattedPrice = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price);
 
   const handleOnAddItem = () => {
     setCount((prevCount) => prevCount + 1);
+    dispatch({ type: PURCHASE_ACTION_TYPES.SET_ITEM_TO_ORDER, payload: { item: data } });
   };
 
   const handleOnRemoveItem = () => {
     setCount((prevCount) => prevCount - 1);
+    dispatch({ type: PURCHASE_ACTION_TYPES.DELETE_ITEM_FROM_ORDER, payload: { itemName: data.name } });
   };
 
   return (
