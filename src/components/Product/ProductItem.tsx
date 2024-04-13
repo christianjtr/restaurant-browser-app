@@ -4,6 +4,7 @@ import PlusIcon from '@assets/PlusIcon.svg?react';
 import MinusIcon from '@assets/MinusIcon.svg?react';
 import { PurchaseContext } from '@contexts/Purchase/PurchaseContext';
 import { PURCHASE_ACTION_TYPES } from '@contexts/Purchase/action-types';
+import { formatAsCurrency } from '@utils/currency.utils';
 
 export interface ProductProps {
   data: Product & { catalog: string };
@@ -13,8 +14,6 @@ export const ProductItem: React.FC<ProductProps> = (props: ProductProps): React.
   const { data } = props;
   const { dispatch } = useContext(PurchaseContext);
   const [count, setCount] = useState<number>(0);
-
-  const formattedPrice = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price);
 
   const handleOnAddItem = () => {
     setCount((prevCount) => prevCount + 1);
@@ -44,7 +43,7 @@ export const ProductItem: React.FC<ProductProps> = (props: ProductProps): React.
       <div className="card-body items-center flex justify-end p-3">
         <h4 className="color--base poppins-regular block w-full text-left">{data.name}</h4>
         <div className="w-full flex flex-row justify-between items-center">
-          <span className="poppins-semibold">{formattedPrice}</span>
+          <span className="poppins-semibold">{formatAsCurrency(data.price)}</span>
           <div className="flex items-center justify-around">
             {count > 0 && (
               <>

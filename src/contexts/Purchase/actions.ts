@@ -46,6 +46,16 @@ export const PurchaseActions = (state: PurchaseStateInterface, action: PurchaseA
         },
       };
     }
+    case PURCHASE_ACTION_TYPES.CLEAR_ORDER: {
+      return {
+        ...state,
+        order: {
+          detail: [],
+          qtyItems: 0,
+          total: 0,
+        },
+      };
+    }
     default: {
       throw new Error('Unhandled action type');
     }

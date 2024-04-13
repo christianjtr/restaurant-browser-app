@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { LoaderSpinner } from '@components/Layout';
 import { useRestaurantCatalog } from '@hooks/useRestaurantCatalog';
@@ -9,12 +9,22 @@ import SearchIcon from '@assets/SearchIcon.svg?react';
 import BackIcon from '@assets/BackIcon.svg?react';
 import { TagLine } from '@components/Layout';
 import { ProductCatalog } from '@components/Product';
+import { PurchaseButton } from '@components/Layout';
+import { PurchaseContext } from '@contexts/Purchase/PurchaseContext';
+import { PURCHASE_ACTION_TYPES } from '@contexts/Purchase/action-types';
+import { formatAsCurrency } from '@utils/currency.utils';
 import './RestaurantDetail.css';
 
 const RestaurantDetail = (): React.ReactElement => {
   const { restaurantId } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
+  const {
+    state: {
+      order: { total, qtyItems },
+    },
+    dispatch,
+  } = useContext(PurchaseContext);
 
   const { restaurant } = state as { restaurant: Restaurant };
   const { isLoading, catalog } = useRestaurantCatalog(restaurantId!);
@@ -22,6 +32,7 @@ const RestaurantDetail = (): React.ReactElement => {
   const [filteredCatalog, setFilteredCatalog] = useState<Catalog[] | null>(null);
 
   const handleOnClickBackButton = (): void => {
+    dispatch({ type: PURCHASE_ACTION_TYPES.CLEAR_ORDER });
     navigate(-1);
   };
 
@@ -29,6 +40,8 @@ const RestaurantDetail = (): React.ReactElement => {
     const filteredCatalog = catalog?.filter(({ name }) => name === selectedItem);
     setFilteredCatalog(filteredCatalog && filteredCatalog?.length > 0 ? filteredCatalog : null);
   };
+
+  const showPurchaseButton = qtyItems > 0;
 
   if (isLoading) return <LoaderSpinner />;
 
@@ -60,7 +73,7 @@ const RestaurantDetail = (): React.ReactElement => {
           </button>
         </div>
       </div>
-      <div className="card-body">
+      <div className="card-body relative">
         <div className="flex flex-row gap-3">
           <div className="flex justify-center">
             <figure className="restaurant-logo relative">
@@ -90,6 +103,9 @@ const RestaurantDetail = (): React.ReactElement => {
             <ProductCatalog catalog={filteredCatalog || catalog} />
           </>
         )}
+        <div className="purchase-button-container fixed left-1/2 transform -translate-x-1/2 -translate-y-1/2 bottom-16 flex w-3/4 md:w-1/3 justify-center">
+          {showPurchaseButton && <PurchaseButton message={`TOTAL (${formatAsCurrency(total)})`} onClick={() => {}} />}
+        </div>
       </div>
     </div>
   );
