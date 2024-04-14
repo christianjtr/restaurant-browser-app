@@ -1,0 +1,1 @@
+.search-products{--list-button-color--base: rgba(38, 38, 56, .85)}.search-products .list-btn-color--base{background-color:var(--list-button-color--base)}.search-products .ui-controls{display:flex}@media screen and (max-width: 320px){.search-products .ui-controls{flex-direction:column;margin:20px 0}}
