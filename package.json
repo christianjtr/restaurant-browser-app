@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "author": "Christian Torrealba",
+  "homepage": "https://christianjtr.github.io/restaurant-browser-app",
   "description": "Restaurant browser application",
   "scripts": {
     "dev": "vite",
