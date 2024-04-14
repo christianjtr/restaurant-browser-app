@@ -8,6 +8,7 @@ import StartIcon from '@assets/StartIcon.svg';
 import PinIcon from '@assets/PinIcon.svg';
 import SearchIcon from '@assets/SearchIcon.svg?react';
 import BackIcon from '@assets/BackIcon.svg?react';
+import StarIcon from '@assets/StarIcon.svg?react';
 import { TagLine } from '@components/Layout';
 import { ProductCatalog } from '@components/Product';
 import { PurchaseButton } from '@components/Layout';
@@ -78,16 +79,27 @@ const RestaurantDetail = (): React.ReactElement => {
           >
             <BackIcon />
           </button>
-          <button
-            id="btn-search"
-            name="btn-search"
-            className="btn btn-circle"
-            onClick={handleOnClickSearchButton}
-            data-testid="btn-search"
-            data-cy="btn-search"
-          >
-            <SearchIcon />
-          </button>
+          <div className="flex gap-5">
+            <button
+              id="btn-search"
+              name="btn-search"
+              className="btn btn-circle"
+              onClick={handleOnClickSearchButton}
+              data-testid="btn-search"
+              data-cy="btn-search"
+            >
+              <SearchIcon />
+            </button>
+            <button
+              id="btn-favorite"
+              name="btn-favorite"
+              className="btn btn-circle"
+              data-testid="btn-favorite"
+              data-cy="btn-favorite"
+            >
+              <StarIcon />
+            </button>
+          </div>
         </div>
       </div>
       <div className="card-body relative">
