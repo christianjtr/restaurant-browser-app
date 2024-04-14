@@ -1,6 +1,7 @@
 import React from 'react';
 import { Catalog } from '@app-types';
-import { ProductItem } from './ProductItem';
+import { ProductItem } from '../ProductItem';
+import './ProductCatalog.css';
 
 export interface ProductCatalogProps {
   catalog: Catalog[];

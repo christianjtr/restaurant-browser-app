@@ -18,12 +18,26 @@
 
   & p.restaurant-info {
     & span + span {
-      margin: 0px 20px;
+      margin: 0px 10px;
     }
   }
 
   & .info-icon {
     width: 20px;
     height: auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .restaurant-item {
+    & p.restaurant-info {
+      & span + span {
+        margin: 0px;
+      }
+    }
+
+    & figure.restaurant-logo {
+      height: 75%;
+    }
   }
 }

@@ -39,7 +39,7 @@ export const RestaurantItem: React.FC<RestarauntItemProps> = (props: RestarauntI
         <div className="basis-full">
           <h2 className="card-title poppins-medium text-base uppercase color--base mb-3">{data.name}</h2>
           <h4 className="card-category-title poppins-regular text-base color--neutral-n300 block">{data.category}</h4>
-          <p className="block restaurant-info color--neutral-n300">
+          <p className="block restaurant-info color--neutral-n300 text-sm lg:text-base">
             <span className="inline-flex items-center">
               <img src={StartIcon} className="mr-2 info-icon" alt={`Start icon`} />
               {`${data.ratings.average} (${data.ratings.total})`}

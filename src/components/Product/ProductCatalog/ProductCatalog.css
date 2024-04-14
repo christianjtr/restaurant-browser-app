@@ -1,0 +1,9 @@
+.product-list {
+  display: grid;
+}
+
+@media screen and (max-width: 320px) {
+  .product-list {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
