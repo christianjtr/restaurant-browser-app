@@ -76,6 +76,12 @@ Before executing these scripts, you must run **npm install** in the directory yo
 
 Click on the following link [GitHub page project](https://christianjtr.github.io/restaurant-browser-app).
 
+##### Offline demo
+
+<p align="center">
+  <img src="https://github.com/christianjtr/restaurant-browser-app/blob/master/demo/demo-gif.gif"/>
+</p>
+
 ##### Preview
 
 1. Restaurants section
