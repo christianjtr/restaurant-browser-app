@@ -136,7 +136,7 @@ const RestaurantDetail = (): React.ReactElement => {
             <ProductCatalog catalog={filteredCatalog || catalog} />
           </>
         )}
-        <div className="purchase-button-container fixed left-1/2 transform -translate-x-1/2 -translate-y-1/2 bottom-16 flex w-3/4 md:w-1/3 justify-center">
+        <div className="purchase-button-container fixed left-1/2 transform -translate-x-1/2 -translate-y-1/2 bottom-12 flex w-3/4 md:w-1/3 justify-center">
           {showPurchaseButton && (
             <PurchaseButton message={`TOTAL (${formatAsCurrency(total)})`} onClick={handleOnClickTotal} />
           )}

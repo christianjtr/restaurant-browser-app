@@ -4,4 +4,17 @@
   & .list-btn-color--base {
     background-color: var(--list-button-color--base);
   }
+
+  & .ui-controls {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .search-products {
+    & .ui-controls {
+      flex-direction: column;
+      margin: 20px 0px;
+    }
+  }
 }

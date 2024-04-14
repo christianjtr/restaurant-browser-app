@@ -39,7 +39,7 @@ const Checkout: React.FC = (): React.ReactElement => {
           id="link-continue-shopping"
           data-testid="link-continue-shopping"
           data-cy="link-continue-shopping"
-          className="link link-accent poppins-medium text-xl decoration-transparent"
+          className="link link-accent poppins-medium text-xl decoration-transparent px-5 text-center"
           onClick={handleOnClickOnContinueShopping}
         >
           Éxito!!! Sigue comprando aquí...

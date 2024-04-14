@@ -5,6 +5,7 @@ import MinusIcon from '@assets/MinusIcon.svg?react';
 import { PurchaseContext } from '@contexts/Purchase/PurchaseContext';
 import { PURCHASE_ACTION_TYPES } from '@contexts/Purchase/action-types';
 import { formatAsCurrency } from '@utils/currency.utils';
+import './ProductItem.css';
 
 export interface ProductProps {
   data: Product & { catalog: string };
@@ -26,7 +27,7 @@ export const ProductItem: React.FC<ProductProps> = (props: ProductProps): React.
   };
 
   return (
-    <div className="card shadow--base">
+    <div className="card product-item shadow--base">
       <div className="flex-grow">
         <figure className="w-auto rounded-xl p-3 max-h-40 overflow-hidden">
           <img
@@ -41,8 +42,8 @@ export const ProductItem: React.FC<ProductProps> = (props: ProductProps): React.
         </figure>
       </div>
       <div className="card-body items-center flex justify-end p-3">
-        <h4 className="color--base poppins-regular block w-full text-left">{data.name}</h4>
-        <div className="w-full flex flex-row justify-between items-center">
+        <h4 className="color--base poppins-regular block w-full text-center md:text-left product-name">{data.name}</h4>
+        <div className="w-full flex gap-5 lg:gap-0 flex-col lg:flex-row lg:justify-between items-center justify-around">
           <span className="poppins-semibold">{formatAsCurrency(data.price)}</span>
           <div className="flex items-center justify-around">
             {count > 0 && (

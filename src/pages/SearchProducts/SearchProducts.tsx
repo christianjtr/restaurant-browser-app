@@ -44,7 +44,7 @@ const SearchProducts: React.FC = (): React.ReactElement => {
 
   return (
     <div className="px-6 search-products">
-      <div className="w-full flex justify-between gap-5 my-10">
+      <div className="w-full flex justify-between gap-5 my-10 ui-controls">
         <button
           id="btn-back"
           name="btn-back"

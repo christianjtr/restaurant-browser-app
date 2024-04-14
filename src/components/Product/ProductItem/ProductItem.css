@@ -1,0 +1,13 @@
+.product-item {
+  & .product-name {
+    text-align: inherit;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .product-item {
+    & .product-name {
+      text-align: center;
+    }
+  }
+}
