@@ -25,10 +25,10 @@ export const useRestaurant = (opts: UseRestaurantProps): UseRestaurantInterface 
   };
 
   useEffect(() => {
-    setIsLoading(true);
     if (userGeolocation) {
       (async () => {
         try {
+          setIsLoading(true);
           const response = await RestaurantServices.getRestaurants();
           const responseDTO = response.map((restaurant) => restaurantAdapter(restaurant, userGeolocation));
           setRestaurants(orderByClosestRestaurant ? orderByClosest(responseDTO) : responseDTO);
