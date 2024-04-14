@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { LoaderSpinner } from '@components/Layout';
 import { useRestaurantCatalog } from '@hooks/useRestaurantCatalog';
+import { useRestaurantById } from '@hooks/useRestaurantById';
 import { Catalog, Restaurant } from '@app-types';
 import StartIcon from '@assets/StartIcon.svg';
 import PinIcon from '@assets/PinIcon.svg';
@@ -13,6 +14,7 @@ import { PurchaseButton } from '@components/Layout';
 import { PurchaseContext } from '@contexts/Purchase/PurchaseContext';
 import { PURCHASE_ACTION_TYPES } from '@contexts/Purchase/action-types';
 import { formatAsCurrency } from '@utils/currency.utils';
+import { GeolocationContext, GeolocationContextType } from '@contexts/Geolocation/GeolocationContext';
 import './RestaurantDetail.css';
 
 const RestaurantDetail = (): React.ReactElement => {
@@ -26,8 +28,17 @@ const RestaurantDetail = (): React.ReactElement => {
     dispatch,
   } = useContext(PurchaseContext);
 
-  const { restaurant } = state as { restaurant: Restaurant };
+  const {
+    state: { userGeolocation },
+  } = useContext(GeolocationContext) as GeolocationContextType;
+
   const { isLoading, catalog } = useRestaurantCatalog(restaurantId!);
+
+  const { isLoading: isLoadingRestaurant, restaurant: restaurantFromService } = useRestaurantById(
+    restaurantId!,
+    userGeolocation!,
+  );
+  const { restaurant: restaurantFromState } = state as { restaurant: Restaurant };
 
   const [filteredCatalog, setFilteredCatalog] = useState<Catalog[] | null>(null);
 
@@ -46,8 +57,9 @@ const RestaurantDetail = (): React.ReactElement => {
   };
 
   const showPurchaseButton = qtyItems > 0;
+  const restaurant = restaurantFromService || restaurantFromState;
 
-  if (isLoading) return <LoaderSpinner />;
+  if (isLoading || isLoadingRestaurant) return <LoaderSpinner />;
 
   return (
     <div className="restaurant-detail-page card w-full rounded-none">

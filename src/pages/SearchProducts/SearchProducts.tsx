@@ -21,7 +21,7 @@ const SearchProducts: React.FC = (): React.ReactElement => {
   const { isLoading, catalog } = useRestaurantCatalog(restaurantId!);
   const restaurantProducts = catalog?.map(({ products }) => products).flat();
 
-  const { filteredProducts } = useSearchProducts(
+  const { filteredProducts, resetFilteredList } = useSearchProducts(
     restaurantProducts || [],
     searchQuery,
     START_SEARCHING_FROM_NTH_CHARACTERS,
@@ -37,6 +37,7 @@ const SearchProducts: React.FC = (): React.ReactElement => {
 
   const handleOnClearSearch = (): void => {
     setSearchQuery('');
+    resetFilteredList();
   };
 
   if (isLoading) return <LoaderSpinner />;

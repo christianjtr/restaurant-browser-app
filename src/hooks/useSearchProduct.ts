@@ -4,6 +4,7 @@ import { Product } from '@app-types';
 
 export interface UseSearchProductsInterface {
   filteredProducts: Product[];
+  resetFilteredList: () => void;
 }
 
 export const useSearchProducts = (
@@ -34,5 +35,6 @@ export const useSearchProducts = (
 
   return {
     filteredProducts,
+    resetFilteredList,
   };
 };
