@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NotFound = (): React.ReactElement => {
+const NotFound: React.FC = (): React.ReactElement => {
   return <div>NotFound</div>;
 };
 

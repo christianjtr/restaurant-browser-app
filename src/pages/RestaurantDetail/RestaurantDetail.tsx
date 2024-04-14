@@ -57,6 +57,10 @@ const RestaurantDetail = (): React.ReactElement => {
     setFilteredCatalog(filteredCatalog && filteredCatalog?.length > 0 ? filteredCatalog : null);
   };
 
+  const handleOnClickTotal = (): void => {
+    navigate('/checkout');
+  };
+
   const showPurchaseButton = qtyItems > 0;
   const restaurant = restaurantFromService || restaurantFromState;
 
@@ -133,7 +137,9 @@ const RestaurantDetail = (): React.ReactElement => {
           </>
         )}
         <div className="purchase-button-container fixed left-1/2 transform -translate-x-1/2 -translate-y-1/2 bottom-16 flex w-3/4 md:w-1/3 justify-center">
-          {showPurchaseButton && <PurchaseButton message={`TOTAL (${formatAsCurrency(total)})`} onClick={() => {}} />}
+          {showPurchaseButton && (
+            <PurchaseButton message={`TOTAL (${formatAsCurrency(total)})`} onClick={handleOnClickTotal} />
+          )}
         </div>
       </div>
     </div>
