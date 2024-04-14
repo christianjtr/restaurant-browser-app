@@ -36,6 +36,10 @@ const RestaurantDetail = (): React.ReactElement => {
     navigate(-1);
   };
 
+  const handleOnClickSearchButton = (): void => {
+    navigate(`/restaurants/${restaurantId}/search`);
+  };
+
   const handleOnSelectItem = (selectedItem: string | null): void => {
     const filteredCatalog = catalog?.filter(({ name }) => name === selectedItem);
     setFilteredCatalog(filteredCatalog && filteredCatalog?.length > 0 ? filteredCatalog : null);
@@ -66,6 +70,7 @@ const RestaurantDetail = (): React.ReactElement => {
             id="btn-search"
             name="btn-search"
             className="btn btn-circle"
+            onClick={handleOnClickSearchButton}
             data-testid="btn-search"
             data-cy="btn-search"
           >

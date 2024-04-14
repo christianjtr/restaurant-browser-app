@@ -1,0 +1,7 @@
+.search-products {
+  --list-button-color--base: rgba(38, 38, 56, 0.85);
+
+  & .list-btn-color--base {
+    background-color: var(--list-button-color--base);
+  }
+}
