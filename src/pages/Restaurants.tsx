@@ -14,7 +14,7 @@ const Restaurants = (): React.ReactElement => {
     orderByClosestRestaurant: true,
   });
 
-  if (isLoading) return <LoaderSpinner />;
+  if (isLoading || restaurants.length === 0) return <LoaderSpinner />;
 
   return (
     <div className="px-6">
