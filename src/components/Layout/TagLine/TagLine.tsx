@@ -25,7 +25,7 @@ export const TagLine: React.FC<TagLineProps> = (props: TagLineProps): React.Reac
           id={`btn-catalog-${name}`}
           name={`btn-catalog-${name}`}
           onClick={() => handleOnClick(name)}
-          className={`btn rounded-badge poppins-regular text-base mr-3 ${selectedItem === name ? 'background-color--base text-white' : ''}`}
+          className={`btn rounded-badge poppins-regular bg-white border-none shadow-none text-base mr-3 ${selectedItem === name ? 'background-color--base text-white' : ''}`}
           data-testid={`btn-catalog-${name}`}
           data-cy={`btn-catalog-${name}`}
         >

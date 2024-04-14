@@ -26,7 +26,7 @@ export const ProductItem: React.FC<ProductProps> = (props: ProductProps): React.
   };
 
   return (
-    <div className="card border">
+    <div className="card shadow--base">
       <div className="flex-grow">
         <figure className="w-auto rounded-xl p-3 max-h-40 overflow-hidden">
           <img
