@@ -80,15 +80,21 @@ Click on the following link [GitHub page project](https://christianjtr.github.io
 
 1. Restaurants section
 
-![](./demo/restaurants.png)
+<p align="center">
+  <img src="https://github.com/christianjtr/restaurant-browser-app/blob/master/demo/restaurants.png" alt="restaurants"/>
+</p>
 
 2. Catalog section
 
-![](./demo/catalog.png)
+<p align="center">
+  <img src="https://github.com/christianjtr/restaurant-browser-app/blob/master/demo/catalog.png" alt="catalog"/>
+</p>
 
 3. Search products section
 
-![](./demo/search_products.png)
+<p align="center">
+  <img src="https://github.com/christianjtr/restaurant-browser-app/blob/master/demo/search_products.png" alt="search_products"/>
+</p>
 
 <a name="005"></a>
 
