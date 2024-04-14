@@ -26,6 +26,7 @@
       "@adapters/*": ["./src/adapters/*"],
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
+      "@config/*": ["./src/config/*"],
       "@contexts/*": ["./src/contexts/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@pages": ["./src/pages"],
