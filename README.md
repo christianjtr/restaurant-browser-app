@@ -84,6 +84,12 @@ Click on the following link [GitHub page project](https://christianjtr.github.io
 
 ##### Preview
 
+0. Geolocation permission
+
+<p align="center">
+  <img src="https://github.com/christianjtr/restaurant-browser-app/blob/master/demo/geolocation_permission.png" alt="permission"/>
+</p>  
+
 1. Restaurants section
 
 <p align="center">
