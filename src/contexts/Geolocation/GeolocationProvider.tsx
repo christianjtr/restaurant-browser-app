@@ -38,6 +38,7 @@ export const GeolocationProvider: React.FC<GeolocationProviderProps> = ({ childr
 
   const handleOnGetCurrentPosition = (position: GeolocationPosition): void => {
     dispatch({ type: GEOLOCATION_ACTION_TYPES.SET_USER_GEOLOCATION, payload: { userGeolocation: position } });
+    setIsPermissionGranted(true);
   };
 
   useGeolocation({ onGetCurrentPositionCallback: handleOnGetCurrentPosition });
