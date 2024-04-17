@@ -1,0 +1,1 @@
+import{j as c}from"./index-D3H2h2H_.js";const r=t=>{const{message:e,onClick:n,disabled:a=!1}=t,s=()=>{n()};return c.jsx("button",{id:"btn-purchase",name:"btn-purchase",className:"btn btn-lg background-color--base text-white poppins-medium text-lg uppercase border-none w-full","data-testid":"btn-purchase","data-cy":"btn-purchase",onClick:s,disabled:a,children:e})};export{r as P};
