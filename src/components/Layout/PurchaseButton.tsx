@@ -3,10 +3,11 @@ import React from 'react';
 export interface PurchaseButtonProps {
   message: string;
   onClick: () => void;
+  disabled?: boolean;
 }
 
 export const PurchaseButton: React.FC<PurchaseButtonProps> = (props: PurchaseButtonProps): React.ReactElement => {
-  const { message, onClick: onClickCallback } = props;
+  const { message, onClick: onClickCallback, disabled = false } = props;
 
   const handleOnClick = (): void => {
     onClickCallback();
@@ -20,6 +21,7 @@ export const PurchaseButton: React.FC<PurchaseButtonProps> = (props: PurchaseBut
       data-testid="btn-purchase"
       data-cy="btn-purchase"
       onClick={handleOnClick}
+      disabled={disabled}
     >
       {message}
     </button>
