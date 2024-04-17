@@ -88,7 +88,7 @@ Click on the following link [GitHub page project](https://christianjtr.github.io
 
 <p align="center">
   <img src="https://github.com/christianjtr/restaurant-browser-app/blob/master/demo/geolocation_permission.png" alt="permission"/>
-</p>  
+</p>
 
 1. Restaurants section
 
@@ -106,6 +106,12 @@ Click on the following link [GitHub page project](https://christianjtr.github.io
 
 <p align="center">
   <img src="https://github.com/christianjtr/restaurant-browser-app/blob/master/demo/search_products.png" alt="search_products"/>
+</p>
+
+4. Checkout page
+
+<p align="center">
+  <img src="https://github.com/christianjtr/restaurant-browser-app/blob/master/demo/checkout.png" alt="search_products"/>
 </p>
 
 <a name="005"></a>
