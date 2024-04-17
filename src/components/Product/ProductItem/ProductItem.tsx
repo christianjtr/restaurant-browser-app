@@ -13,8 +13,14 @@ export interface ProductProps {
 
 export const ProductItem: React.FC<ProductProps> = (props: ProductProps): React.ReactElement => {
   const { data } = props;
-  const { dispatch } = useContext(PurchaseContext);
-  const [count, setCount] = useState<number>(0);
+  const {
+    dispatch,
+    state: { order },
+  } = useContext(PurchaseContext);
+
+  const qtyOfProducts = order.detail.filter(({ name }) => name === data.name).length;
+
+  const [count, setCount] = useState<number>(qtyOfProducts || 0);
 
   const handleOnAddItem = () => {
     setCount((prevCount) => prevCount + 1);
