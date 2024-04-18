@@ -32,7 +32,7 @@ const SearchProducts: React.FC = (): React.ReactElement => {
   };
 
   const handleOnTypeSearchQuery = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearchQuery(event.currentTarget.value.toLowerCase());
+    setSearchQuery(event.currentTarget.value);
   };
 
   const handleOnClearSearch = (): void => {

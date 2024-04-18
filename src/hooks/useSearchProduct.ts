@@ -16,7 +16,14 @@ export const useSearchProducts = (
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   const filterProducts = (): void => {
-    const result = products.filter(({ name }) => name.toLocaleLowerCase().includes(searchQueryValue));
+    const searchQueryChunks = searchQueryValue.trim().toLowerCase().split('');
+
+    const uniqueSearchQueryChars = new Set(searchQueryChunks);
+    const regex = new RegExp(`(i:${searchQueryChunks.join('|')})+`, 'i');
+
+    const result = products.filter(({ name }) => {
+      return regex.test(name) && Array.from(uniqueSearchQueryChars).every((char) => name.toLowerCase().includes(char));
+    });
     setFilteredProducts(result);
   };
 
