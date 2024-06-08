@@ -3,13 +3,20 @@ import { getDistanceBetweenTwoCoordPoints } from '@utils/geolocation.utils';
 
 export const restaurantAdapter = (
   restaurant: RestaurantAPIResponse.Restaurant,
-  userGeolocation: GeolocationPosition,
+  userGeolocation?: GeolocationPosition,
 ): Restaurant => {
-  const { latitude, longitude } = userGeolocation.coords;
+  const { latitude, longitude } = userGeolocation?.coords || {};
 
   return {
     ...restaurant,
     category: 'Comida rápida',
-    ...getDistanceBetweenTwoCoordPoints({ latitude, longitude }, restaurant.coordinates),
+    ...(userGeolocation &&
+      getDistanceBetweenTwoCoordPoints(
+        {
+          latitude: latitude!,
+          longitude: longitude!,
+        },
+        restaurant.coordinates,
+      )),
   };
 };

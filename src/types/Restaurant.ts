@@ -20,6 +20,6 @@ export namespace RestaurantAPIResponse {
 
 export type Restaurant = RestaurantAPIResponse.Restaurant & {
   category: string;
-  distance: number;
-  formattedDistance: string;
+  distance?: number;
+  formattedDistance?: string;
 };

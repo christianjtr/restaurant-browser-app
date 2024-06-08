@@ -12,19 +12,27 @@ export interface GeolocationProviderProps {
 
 const GeolocationAlertMessage: React.FC = (): React.ReactElement => {
   return (
-    <div role="alert" className="alert shadow-lg absolute w-1/3 m-auto left-0 right-0 top-40 z-10">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6">
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        ></path>
-      </svg>
-      <div>
-        <h3 className="font-bold">Acceso a tu ubicación!</h3>
-        <div className="text-xs">
-          Debes permitirnos acceder a tu ubicación para mostrarte los restaurantes más cercanos.
+    <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div className="fixed inset-0 bg-gray-500 bg-opacity-65 transition-opacity"></div>
+      <div role="alert" className="alert shadow-lg absolute w-1/3 m-auto left-0 right-0 top-40 z-10">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          className="stroke-info shrink-0 w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <div>
+          <h3 className="font-bold">Acceso a tu ubicación!</h3>
+          <div className="text-xs">
+            Debes permitirnos acceder a tu ubicación para mostrarte los restaurantes más cercanos.
+          </div>
         </div>
       </div>
     </div>
@@ -34,6 +42,7 @@ const GeolocationAlertMessage: React.FC = (): React.ReactElement => {
 export const GeolocationProvider: React.FC<GeolocationProviderProps> = ({ children }): React.ReactElement => {
   const [state, dispatch] = useReducer(GeolocationActions, GeolocationState);
   const [isPermissionGranted, setIsPermissionGranted] = useState<boolean | undefined>(undefined);
+  const [permissionState, setPermissionState] = useState<PermissionState>('prompt');
   const { checkPermissionStatus } = useNavigatorPermission();
 
   const handleOnGetCurrentPosition = (position: GeolocationPosition): void => {
@@ -44,14 +53,15 @@ export const GeolocationProvider: React.FC<GeolocationProviderProps> = ({ childr
   useGeolocation({ onGetCurrentPositionCallback: handleOnGetCurrentPosition });
 
   useEffect(() => {
-    checkPermissionStatus('geolocation').then((result) => {
-      setIsPermissionGranted(result === 'granted');
+    checkPermissionStatus('geolocation', (permissionState: PermissionState) => {
+      setPermissionState(permissionState);
+      setIsPermissionGranted(permissionState === 'granted');
     });
   }, []);
 
   return (
     <GeolocationContext.Provider value={{ state }}>
-      {typeof isPermissionGranted === 'boolean' && !isPermissionGranted && <GeolocationAlertMessage />}
+      {(permissionState === 'prompt' || typeof isPermissionGranted === 'undefined') && <GeolocationAlertMessage />}
       {children}
     </GeolocationContext.Provider>
   );

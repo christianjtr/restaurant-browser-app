@@ -3,7 +3,7 @@ import { Restaurant } from '@app-types';
 import RestaurantServices from '@services/apis/restaurant/restaurant.services';
 import { restaurantAdapter } from '@adapters/restaurant.adapter';
 export interface UseRestaurantProps {
-  userGeolocation: GeolocationPosition;
+  userGeolocation?: GeolocationPosition;
   orderByClosestRestaurant?: boolean;
 }
 
@@ -21,25 +21,23 @@ export const useRestaurant = (opts: UseRestaurantProps): UseRestaurantInterface 
   const [hasError, setHasError] = useState<boolean>(false);
 
   const orderByClosest = (items: Restaurant[]): Restaurant[] => {
-    return items.sort((a, b) => a.distance - b.distance);
+    return items.sort((a, b) => a.distance! - b.distance!);
   };
 
   useEffect(() => {
-    if (userGeolocation) {
-      (async () => {
-        try {
-          setIsLoading(true);
-          const response = await RestaurantServices.getRestaurants();
-          const responseDTO = response.map((restaurant) => restaurantAdapter(restaurant, userGeolocation));
-          setRestaurants(orderByClosestRestaurant ? orderByClosest(responseDTO) : responseDTO);
-        } catch (error) {
-          setHasError(true);
-          throw new Error(`Error fetching restaurants, [Error]: ${error}`);
-        } finally {
-          setIsLoading(false);
-        }
-      })();
-    }
+    (async () => {
+      try {
+        setIsLoading(true);
+        const response = await RestaurantServices.getRestaurants();
+        const responseDTO = response.map((restaurant) => restaurantAdapter(restaurant, userGeolocation));
+        setRestaurants(orderByClosestRestaurant ? orderByClosest(responseDTO) : responseDTO);
+      } catch (error) {
+        setHasError(true);
+        throw new Error(`Error fetching restaurants, [Error]: ${error}`);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
   }, [userGeolocation]);
 
   return {
